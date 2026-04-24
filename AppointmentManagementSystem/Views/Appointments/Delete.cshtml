@@ -1,0 +1,55 @@
+﻿@model AppointmentManagementSystem.ViewModels.ViewModel
+
+@{
+    ViewData["Title"] = "Delete an Appointment";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">@ViewData["Title"]</h1>
+            <h3 class="text-center">Are you sure you want to delete this appointment?</h3>
+            <hr />
+            <div>
+                <h4 class="text-center">Appointment Details</h4>
+                <dl class="row">
+                    <!-- Displays the information of the appointment that is being deleted-->
+                    <div class="col-sm-6 text-center">
+                        <dt>First Name:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.FirstName)</dd>
+
+                        <dt>Last Name:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.LastName)</dd>
+
+                        <dt>Phone Number:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.PhoneNumber)</dd>
+
+                        <dt>User Email:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.UserEmail)</dd>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <dt>Appointment Date:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentDate)</dd>
+
+                        <dt>Appointment Time:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentTime)</dd>
+
+                        <dt>Appointment Subject:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentSubject)</dd>
+                    </div>
+                </dl>
+                <!-- Button provided to confirm deletion
+                    This submits the Id of the appointment to delete to the condifrmed delete action method in the
+                    appointments controller
+                -->
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="UserAppointments.AppointmentId" />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Delete Appointment" class="btn btn-danger" />
+                        <a asp-action="Index" class="btn btn-success">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

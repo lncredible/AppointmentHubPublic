@@ -1,0 +1,53 @@
+﻿@model AppointmentManagementSystem.ViewModels.ViewModel
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">@ViewData["Title"]</h1>
+            <h3 class="text-center">Check appointment details</h3>
+            <hr />
+            <div>
+                <h4 class="text-center">Appointment Information</h4>
+                <dl class="row">
+                    <!-- Display appointment details -->
+                    <div class="col-sm-6 text-center">
+                        <dt>First Name:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.FirstName)</dd>
+
+                        <dt>Last Name:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.LastName)</dd>
+
+                        <dt>Phone Number:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserDetails.PhoneNumber)</dd>
+
+                        <dt>User Email:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.UserEmail)</dd>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <dt>Appointment Date:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentDate)</dd>
+
+                        <dt>Appointment Time:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentTime)</dd>
+
+                        <dt>Appointment Subject:</dt>
+                        <dd>@Html.DisplayFor(model => model.UserAppointments.AppointmentSubject)</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="text-center">
+                <!-- If this appointment is not archived, provide the option to edit it -->
+                @if (!ArchiveStateSingleton.Instance.IsViewingArchivedAppointments)
+                {
+                    <a asp-action="Edit" asp-route-id="@Model?.UserAppointments.AppointmentId" class="btn btn-success">Edit Appointment</a>
+                }
+                <!-- Provide a button to return back to the index page -->
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
